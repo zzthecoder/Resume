@@ -280,6 +280,24 @@ export function ChatWindow() {
             </p>
           </div>
 
+          {/* Mobile suggested questions: horizontal scroll */}
+          <div className="block lg:hidden mb-4">
+            <div className="flex gap-3 overflow-x-auto px-1 py-2">
+              {suggestedQuestions.map((question, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="sm"
+                  className="flex-shrink-0 whitespace-normal min-w-[160px] text-sm h-auto p-2 bg-background/50 border-primary/20"
+                  onClick={() => handleSuggestedQuestion(question)}
+                  disabled={isTyping}
+                >
+                  {question}
+                </Button>
+              ))}
+            </div>
+          </div>
+
           {/* Messages */}
           <div 
             ref={messagesContainerRef}
