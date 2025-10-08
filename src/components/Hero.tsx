@@ -25,7 +25,7 @@ export function Hero({ onStartChat, name, bio, tagline }: HeroProps) {
             isHero={true}
           />
         </div>
-        <div className="sm:hidden absolute inset-x-0 bottom-0 h-72 opacity-80 -z-10">
+        <div className="sm:hidden absolute inset-0 opacity-90 -z-10">
           {/* small decorative avatar block on mobile */}
           <SimpleAvatar 
             className="w-full h-full object-cover"
@@ -35,10 +35,10 @@ export function Hero({ onStartChat, name, bio, tagline }: HeroProps) {
             isHero={true}
           />
         </div>
-      </div>
+  </div>
       
-      {/* Lighter overlay for better visibility */}
-      <div className="absolute inset-0 bg-background/10 backdrop-blur-[1px] z-10"></div>
+  {/* Lighter overlay for better visibility (stronger on mobile) */}
+  <div className="absolute inset-0 bg-background/30 sm:bg-background/10 backdrop-blur-[1px] z-10"></div>
 
       {/* Content - Positioned at bottom */}
   <div className="relative z-30 max-w-4xl w-full flex flex-col items-center text-center space-y-4 animate-fade-in mb-12 md:mb-20">
