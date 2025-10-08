@@ -1,0 +1,126 @@
+{
+  "name": "Marzook Mansoor",
+  "bio": "AI Engineer and Business Analyst passionate about applying AI to solve real business problems. I blend technical expertise with consulting experience to deliver practical, human-centered solutions.",
+  "tagline": "Transforming businesses through AI innovation and data-driven insights",
+  "skills": [
+    "Python",
+    "SQL",
+    "JavaScript",
+    "R",
+    "PHP",
+    "REST APIs",
+    "AWS",
+    "Azure",
+    "GCP",
+    "AI/ML",
+    "LLMs",
+    "LangChain",
+    "Transformers",
+    "RAG",
+    "scikit-learn",
+    "TensorFlow",
+    "Hugging Face",
+    "Tableau",
+    "Power BI",
+    "Snowflake",
+    "Alteryx",
+    "SQL Server",
+    "PostgreSQL",
+    "UiPath",
+    "PySide6/Qt",
+    "PyInstaller",
+    "Chrome Extensions",
+    "Pega Systems",
+    "Agile/Scrum",
+    "Data Modeling",
+    "Process Mapping",
+    "A/B Testing",
+    "Storytelling"
+  ],
+  "experience": [
+    {
+      "role": "Business Architect Intern (Pega) - Internship",
+      "company": "Objectstream, Inc.",
+      "period": "Sep 2025 – Dec 2025",
+      "impact": "Supported digital transformation using Pega to automate cross-functional workflows; mapped AS-IS/TO-BE processes and aligned designs with consulting best practices; partnered with Agile squads to clarify requirements and improve sprint outcomes."
+    },
+    {
+      "role": "Qualitative & Quantitative Insights Extern - Externship",
+      "company": "Beats by Dre (Extern program)",
+      "period": "Sep 2025 – Dec 2025",
+      "impact": "Analyzed consumer feedback with Python + AI sentiment to surface themes that informed messaging and product insights; combined qualitative coding with trend quantification; delivered data storytelling readouts and experiment proposals."
+    },
+    {
+      "role": "Business Analyst Intern, done",
+      "company": "Love’s Travel Stops",
+      "period": "May 2025 – Aug 2025",
+      "impact": "Built predictive analytics and reporting pipelines (Python, SQL) to support decisions; automated cloud-based workflows reducing reporting latency ~21% and improved a batch job from 52 → 41 minutes; delivered Power BI/Tableau dashboards for leadership visibility; collaborated cross-functionally to prioritize enterprise improvements."
+    },
+    {
+      "role": "Graduate Assistant – Business Analysis & Database Admin, done",
+      "company": "University of Oklahoma",
+      "period": "May 2022 – May 2025",
+      "impact": "Taught SQL, statistics, and dashboarding; designed hands-on labs emphasizing automation and analytics workflows; maintained and optimized SQL Server/PostgreSQL databases to improve query performance and reporting accuracy."
+    }
+  ],
+  "projects": [
+    {
+      "title": "ChibiTomo",
+      "description": "AI-powered desktop Pomodoro companion with a friendly chibi avatar, always-on-top window, click-through lock mode, tray controls, and customizable sessions.",
+      "tech": ["Python", "PySide6", "PyInstaller", "Windows 10/11"],
+      "link": "https://github.com/zzthecoder/ChibiTomo",
+      "year": 2025,
+      "highlights": [
+        "Contextual AI flavor with minimal, cute UI to improve focus",
+        "Drag & drop a photo to generate a chibi avatar",
+        "Packaged as a standalone Windows executable (PyInstaller)"
+      ]
+    },
+    {
+      "title": "Aesculapius AI",
+      "description": "Privacy-first local LLM desktop assistant for household repair diagnostics with RAG, parts lookup, and local technician discovery.",
+      "tech": ["Python", "Phi-3.5-mini", "llama-cpp-python", "RAG", "PySide6"],
+      "link": "https://github.com/zzthecoder/Aesculapius-AI",
+      "year": 2025,
+      "highlights": [
+        "Offline inference with contextual memory for step-by-step troubleshooting",
+        "Parts identification and retailer integration; local business finder",
+        "Packaged via PyInstaller with installer script"
+      ]
+    },
+    {
+      "title": "LinkedIn Sentiment Assistant",
+      "description": "Chrome extension for responsible, AI-assisted LinkedIn engagement with sentiment analysis, rate limiting, toxicity filters, and learning selectors.",
+      "tech": ["JavaScript", "Chrome APIs", "Sentiment Analysis"],
+      "link": "https://github.com/zzthecoder/LinkedIn-LikeBot",
+      "year": 2025,
+      "highlights": [
+        "Auto-like with safety guardrails and DOM-adaptive selectors",
+        "Comment draft generation and engagement history",
+        "Local-only data with export/import of learned selectors"
+      ]
+    }
+  ],
+  "fun_facts": [
+    "Born in India, moved to Oklahoma at age 8—proud of my Indian heritage and Oklahoma roots.",
+    "Love cats and cars; favorite foods are Mexican and Thai.",
+    "Built a 3D-printed medical device that helped my cat’s injured tail heal.",
+    "Passionate about fitness, volunteering, and giving back to my community.",
+    "Lifelong learner who values family and wants to honor my parents’ sacrifices."
+  ],
+  "education": {
+    "degree": "M.S. Management Information Technology (May 2025); B.B.A. Management Information Systems (May 2025) already graduated",
+    "school": "University of Oklahoma — Price College of Business",
+    "location": "Norman, Oklahoma, USA"
+  },
+  "goals": {
+    "short_term": "AI Engineer / Associate Consultant—apply AI and analytics to solve measurable business problems.",
+    "long_term": "Lead teams or build a company that helps people transition to better technology while giving back to honor my parents’ sacrifices."
+  },
+  "contact": {
+    "email": "marzook.mansoor@outlook.com",
+    "github": "https://github.com/zzthecoder",
+    "linkedin": "https://www.linkedin.com/in/marzook-mansoor/",
+    "twitter": "https://twitter.com/marzookmansoor"
+  }
+}
