@@ -200,6 +200,15 @@ export function ChatWindow() {
     setInput('');
     setIsTyping(true);
 
+    // play quick click sound for immediate feedback (silent fallback if blocked)
+    try {
+      const audio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQgAAAAA');
+      audio.volume = 0.6;
+      audio.play().catch(() => {});
+    } catch (err) {
+      // ignore audio playback errors
+    }
+
     try {
       const { answer, sources } = await getEnhancedAnswer(input);
       
@@ -229,7 +238,7 @@ export function ChatWindow() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       e.stopPropagation();
@@ -326,7 +335,9 @@ export function ChatWindow() {
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyDown}
+              inputMode="text"
+              enterKeyHint="send"
               placeholder="Ask me anything..."
               className="flex-1 bg-background/50 border-primary/20 focus:border-primary/40 backdrop-blur-sm"
               disabled={isTyping}
