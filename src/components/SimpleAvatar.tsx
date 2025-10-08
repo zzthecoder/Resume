@@ -296,7 +296,7 @@ export function SimpleAvatar({
             camera.lookAt(0, 1.6, 0); // raise look target slightly
           } else {
             // Desktop: a bit further back so head sits comfortably with more top space
-            camera.position.set(0, 1.6, 5); // slightly further back
+            camera.position.set(0, 1.6, 8); // slightly further back
             camera.lookAt(0, 1.55, 0); // look a touch higher
           }
         } else {
