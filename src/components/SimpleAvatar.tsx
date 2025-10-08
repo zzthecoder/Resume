@@ -291,9 +291,9 @@ export function SimpleAvatar({
         if (isHero) {
           // On small screens, move camera closer for a more 'zoomed' avatar
           if (isSmallScreen) {
-            // Move camera significantly closer on small screens so avatar appears large
-            camera.position.set(0, 1.45, 0.9);
-            camera.lookAt(0, 1.3, 0);
+            // Move camera closer on small screens but keep a slightly higher Y to avoid crouch framing
+            camera.position.set(0, 1.55, 1.0);
+            camera.lookAt(0, 1.45, 0);
           } else {
             camera.position.set(0, 1.6, 2.5); // Position for chest-up view on desktop
             camera.lookAt(0, 1.4, 0); // Look at chest level
@@ -373,9 +373,10 @@ export function SimpleAvatar({
             avatar.position.set(0, 0, 0);
             // On small screens for hero, scale avatar up so it visually fills more of the viewport
             if (isSmallScreen && isHero) {
-              // Increase scale so avatar visually fills more of mobile viewport
-              avatar.scale.set(1.9, 1.9, 1.9);
-              avatar.position.set(0, -0.35, 0);
+              // Increase scale so avatar visually fills more of mobile viewport but avoid over-scaling
+              avatar.scale.set(1.4, 1.4, 1.4);
+              // Small upward nudge so model doesn't look crouched
+              avatar.position.set(0, -0.12, 0);
             } else {
               avatar.scale.set(1, 1, 1);
             }
