@@ -291,13 +291,13 @@ export function SimpleAvatar({
         if (isHero) {
           // On small screens, zoom out slightly and aim higher so the face is vertically centered.
           if (isSmallScreen) {
-            // Slightly further back than before to provide breathing room around the head
-            camera.position.set(0, 1.6, 1.15); // was 1.0
-            camera.lookAt(0, 1.55, 0); // aim higher to target face
+            // Zoom out a bit more and aim slightly higher to center the face
+            camera.position.set(0, 1.6, 1.35); // increased Z for more breathing room
+            camera.lookAt(0, 1.6, 0); // raise look target slightly
           } else {
-            // Desktop: small zoom out so the head sits comfortably in frame
-            camera.position.set(0, 1.6, 2.8); // was 2.5
-            camera.lookAt(0, 1.5, 0); // look a bit higher than chest
+            // Desktop: a bit further back so head sits comfortably with more top space
+            camera.position.set(0, 1.6, 5); // slightly further back
+            camera.lookAt(0, 1.55, 0); // look a touch higher
           }
         } else {
           // Chat avatars: slightly further back and aimed toward face-level
@@ -375,10 +375,10 @@ export function SimpleAvatar({
             avatar.position.set(0, 0, 0);
             // On small screens for hero, scale avatar up so it visually fills more of the viewport
             if (isSmallScreen && isHero) {
-              // Increase scale so avatar visually fills more of mobile viewport but avoid over-scaling
-              avatar.scale.set(1.35, 1.35, 1.35); // slightly reduced from 1.4 to avoid cropping when zoomed out
+              // Keep mobile scale so avatar still fills viewport; nudge up a bit more for face centering
+              avatar.scale.set(1.35, 1.35, 1.35);
               // Nudge the model up slightly so the face is vertically centered
-              avatar.position.set(0, -0.06, 0); // was -0.12, less down so face moves up
+              avatar.position.set(0, -0.03, 0); // moved up slightly from -0.06
             } else {
               avatar.scale.set(1, 1, 1);
             }
