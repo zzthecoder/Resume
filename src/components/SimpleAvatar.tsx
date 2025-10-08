@@ -291,17 +291,17 @@ export function SimpleAvatar({
         if (isHero) {
           // On small screens, zoom out slightly and aim higher so the face is vertically centered.
           if (isSmallScreen) {
-            // Zoom out a bit more and aim slightly higher to center the face
-            camera.position.set(0, 1.6, 3); // increased Z for more breathing room
-            camera.lookAt(0, 1.6, 0); // raise look target slightly
+            // Reduce extreme zoom-out to avoid top-head clipping; bring camera slightly closer
+            camera.position.set(0, 1.58, 1.9); // bring Z back closer so head isn't cut off
+            camera.lookAt(0, 1.58, 0); // aim at face level
           } else {
-            // Desktop: a bit further back so head sits comfortably with more top space
-            camera.position.set(0, 1.6, 8); // slightly further back
-            camera.lookAt(0, 1.55, 0); // look a touch higher
+            // Desktop: keep comfortable distance but aim slightly lower to include hair/top of head
+            camera.position.set(0, 1.6, 3.2); // reasonable desktop distance
+            camera.lookAt(0, 1.5, 0); // look a bit lower so top of head is visible
           }
         } else {
-          // Chat avatars: slightly further back and aimed toward face-level
-          camera.position.set(0, 1.62, 1.5); // small zoom out from 1.8
+          // Chat avatars: balanced distance and look to avoid clipping
+          camera.position.set(0, 1.62, 1.95);
           camera.lookAt(0, 1.48, 0);
         }
         cameraRef.current = camera;
@@ -375,10 +375,10 @@ export function SimpleAvatar({
             avatar.position.set(0, 0, 0);
             // On small screens for hero, scale avatar up so it visually fills more of the viewport
             if (isSmallScreen && isHero) {
-              // Keep mobile scale so avatar still fills viewport; nudge up a bit more for face centering
-              avatar.scale.set(1.35, 1.35, 1.35);
-              // Nudge the model up slightly so the face is vertically centered
-              avatar.position.set(0, -0.03, 0); // moved up slightly from -0.06
+              // Slightly reduce scale to avoid top clipping while keeping good coverage
+              avatar.scale.set(1.25, 1.25, 1.25);
+              // Move model slightly down so the head fits comfortably in frame
+              avatar.position.set(0, -0.12, 0); // lower model a bit to include hair/top
             } else {
               avatar.scale.set(1, 1, 1);
             }
