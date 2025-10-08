@@ -289,18 +289,20 @@ export function SimpleAvatar({
         );
         
         if (isHero) {
-          // On small screens, move camera closer for a more 'zoomed' avatar
+          // On small screens, zoom out slightly and aim higher so the face is vertically centered.
           if (isSmallScreen) {
-            // Move camera closer on small screens but keep a slightly higher Y to avoid crouch framing
-            camera.position.set(0, 1.55, 1.0);
-            camera.lookAt(0, 1.45, 0);
+            // Slightly further back than before to provide breathing room around the head
+            camera.position.set(0, 1.6, 1.15); // was 1.0
+            camera.lookAt(0, 1.55, 0); // aim higher to target face
           } else {
-            camera.position.set(0, 1.6, 2.5); // Position for chest-up view on desktop
-            camera.lookAt(0, 1.4, 0); // Look at chest level
+            // Desktop: small zoom out so the head sits comfortably in frame
+            camera.position.set(0, 1.6, 2.8); // was 2.5
+            camera.lookAt(0, 1.5, 0); // look a bit higher than chest
           }
         } else {
-          camera.position.set(0, 1.6, 1.8); // Closer for chat
-          camera.lookAt(0, 1.4, 0);
+          // Chat avatars: slightly further back and aimed toward face-level
+          camera.position.set(0, 1.62, 1.95); // small zoom out from 1.8
+          camera.lookAt(0, 1.48, 0);
         }
         cameraRef.current = camera;
 
@@ -374,9 +376,9 @@ export function SimpleAvatar({
             // On small screens for hero, scale avatar up so it visually fills more of the viewport
             if (isSmallScreen && isHero) {
               // Increase scale so avatar visually fills more of mobile viewport but avoid over-scaling
-              avatar.scale.set(1.4, 1.4, 1.4);
-              // Small upward nudge so model doesn't look crouched
-              avatar.position.set(0, -0.12, 0);
+              avatar.scale.set(1.35, 1.35, 1.35); // slightly reduced from 1.4 to avoid cropping when zoomed out
+              // Nudge the model up slightly so the face is vertically centered
+              avatar.position.set(0, -0.06, 0); // was -0.12, less down so face moves up
             } else {
               avatar.scale.set(1, 1, 1);
             }
