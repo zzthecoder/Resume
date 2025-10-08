@@ -27,9 +27,9 @@ interface SectionsProps {
 
 export function Sections({ skills, experience, projects, contact }: SectionsProps) {
   return (
-    <div className="py-20 px-6 space-y-20 bg-gradient-to-b from-background to-primary/5">
+  <div className="py-12 px-4 md:py-20 md:px-6 space-y-12 md:space-y-20 bg-gradient-to-b from-background to-primary/5">
       {/* Skills */}
-      <section className="max-w-4xl mx-auto">
+  <section className="max-w-3xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
           <Code className="h-8 w-8 text-primary" />
           <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Skills & Technologies</h2>
@@ -48,7 +48,7 @@ export function Sections({ skills, experience, projects, contact }: SectionsProp
       </section>
 
       {/* Experience */}
-      <section className="max-w-4xl mx-auto">
+  <section className="max-w-3xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
           <Briefcase className="h-8 w-8 text-primary" />
           <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Experience</h2>
@@ -79,9 +79,9 @@ export function Sections({ skills, experience, projects, contact }: SectionsProp
           <FolderGit2 className="h-8 w-8 text-primary" />
           <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Featured Projects</h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {projects.map((project, index) => (
-            <Card key={index} className="bg-card/70 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all hover:scale-105 shadow-lg cursor-pointer"
+            <Card key={index} className="bg-card/70 backdrop-blur-sm border-primary/20 hover:border-primary/50 transition-all hover:scale-105 shadow-lg cursor-pointer w-full"
                   onClick={() => window.open(project.link, '_blank')}>
               <CardHeader>
                 <CardTitle className="text-lg">{project.title}</CardTitle>
@@ -98,7 +98,7 @@ export function Sections({ skills, experience, projects, contact }: SectionsProp
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all"
+                  className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all w-full md:w-auto"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.link, '_blank');
@@ -114,7 +114,7 @@ export function Sections({ skills, experience, projects, contact }: SectionsProp
       </section>
 
       {/* Contact */}
-      <section className="max-w-4xl mx-auto">
+  <section className="max-w-3xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
           <Mail className="h-8 w-8 text-primary" />
           <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Get In Touch</h2>
@@ -130,7 +130,7 @@ export function Sections({ skills, experience, projects, contact }: SectionsProp
                 <Button 
                   variant="outline" 
                   size="icon" 
-                  className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all"
+                    className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all"
                   onClick={() => window.open(contact.github, '_blank')}
                   title="GitHub Profile"
                 >
