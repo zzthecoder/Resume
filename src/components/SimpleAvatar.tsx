@@ -301,7 +301,7 @@ export function SimpleAvatar({
           }
         } else {
           // Chat avatars: slightly further back and aimed toward face-level
-          camera.position.set(0, 1.62, 1.95); // small zoom out from 1.8
+          camera.position.set(0, 1.62, 1.5); // small zoom out from 1.8
           camera.lookAt(0, 1.48, 0);
         }
         cameraRef.current = camera;
