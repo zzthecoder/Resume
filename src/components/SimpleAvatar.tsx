@@ -278,8 +278,10 @@ export function SimpleAvatar({
         sceneRef.current = scene;
 
         // Camera - Adjusted for chest-up view
+        // Use slightly wider FOV on small screens for better framing
+        const isSmallScreen = container.clientWidth < 640;
         const camera = new THREE.PerspectiveCamera(
-          isHero ? 30 : 35, // Wider FOV for hero
+          isHero ? (isSmallScreen ? 38 : 30) : (isSmallScreen ? 42 : 35),
           container.clientWidth / container.clientHeight,
           0.1,
           1000
