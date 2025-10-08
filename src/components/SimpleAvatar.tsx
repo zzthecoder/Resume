@@ -292,7 +292,7 @@ export function SimpleAvatar({
           // On small screens, zoom out slightly and aim higher so the face is vertically centered.
           if (isSmallScreen) {
             // Zoom out a bit more and aim slightly higher to center the face
-            camera.position.set(0, 1.6, 1.35); // increased Z for more breathing room
+            camera.position.set(0, 1.6, 3); // increased Z for more breathing room
             camera.lookAt(0, 1.6, 0); // raise look target slightly
           } else {
             // Desktop: a bit further back so head sits comfortably with more top space
