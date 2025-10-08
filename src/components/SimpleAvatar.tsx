@@ -162,51 +162,52 @@ export function SimpleAvatar({
         console.warn('No clips available to play');
         return;
       }
-      
-      // ALWAYS stop ALL animations before starting new one to remove all running animations
-      console.log('Stopping all animations to remove any running animations...');
-      
-      // Stop all actions in the mixer
-      mixerRef.current.stopAllAction();
-      
       // Clear any existing timeout
       if (animationLoopTimeoutRef.current) {
         clearTimeout(animationLoopTimeoutRef.current);
         animationLoopTimeoutRef.current = null;
       }
-      
-      // Reset current animation reference
-      currentAnimationRef.current = null;
-      
-      // Ultra-short wait for complete stop (reduced for smoother transitions)
-      await new Promise(resolve => setTimeout(resolve, 50));
-      
-      // Play random animation
+
+      // Pick a clip to play
       const randomClip = clipsToUse[Math.floor(Math.random() * clipsToUse.length)];
-      console.log('Playing animation:', randomClip.name, 'duration:', randomClip.duration, 'looping:', isLooping);
-      
+      console.log('Queuing animation:', randomClip.name, 'duration:', randomClip.duration, 'looping:', isLooping);
+
       const action = mixerRef.current.clipAction(randomClip);
       action.reset();
-      
-      // Ensure normal speed for animations
+
+      // Ensure time scale tuned for hero animations
       if (isHero && animationSet === 'A1') {
-        action.setEffectiveTimeScale(0.85); // Slightly smoother for A1
+        action.setEffectiveTimeScale(0.85);
       } else {
-        action.setEffectiveTimeScale(1.0); // Normal speed for others
+        action.setEffectiveTimeScale(1.0);
       }
-      
+
       if (isLooping) {
         action.setLoop(THREE.LoopRepeat, Infinity);
       } else {
         action.setLoop(THREE.LoopOnce, 1);
-        action.clampWhenFinished = true; // Hold the last frame to prevent default state glitch
+        action.clampWhenFinished = true;
       }
-      
-      // Instant play for ultra-smooth transitions
-      action.setEffectiveWeight(1.0);
-      action.play();
+
+      // Decide fade durations (seconds)
+      const fadeDuration = isHero && animationSet === 'A1' ? 0.8 : (animationSet === 'A2' ? 0.6 : 0.4);
+
+      // If there's a current action, cross-fade smoothly
+      if (currentAnimationRef.current) {
+        try {
+          console.log('Crossfading from', currentAnimationRef.current.getClip().name, 'to', randomClip.name, 'duration', fadeDuration);
+          // Fade out current, then fade in new action
+          await fadeOut(currentAnimationRef.current, fadeDuration);
+        } catch (err) {
+          console.warn('Fade out failed, stopping previous action directly', err);
+          try { currentAnimationRef.current.stop(); } catch {};
+        }
+      }
+
+      // Fade in the new action (plays internally)
+      await fadeIn(action, fadeDuration);
       currentAnimationRef.current = action;
-      console.log('Animation started instantly - ultra-smooth transitions');
+      console.log('Animation crossfade complete:', randomClip.name);
       
       // Queue next animation based on type with ultra-smooth timing
       if (isLooping && isTalkingRef.current) {
@@ -220,18 +221,18 @@ export function SimpleAvatar({
         }, nextDelay);
       } else if (!isTalkingRef.current) {
         // For idle animations with ultra-smooth overlaps
-        if (isHero && animationSet === 'A1') {
+          if (isHero && animationSet === 'A1') {
           // Ultra-smooth A1 transitions
           const animationDuration = randomClip.duration * 1000;
           const nextDelay = animationDuration - 800; // Start new animation 800ms before current ends
           
           console.log(`A1 hero (ULTRA-SMOOTH): "${randomClip.name}" duration: ${animationDuration}ms, next in: ${nextDelay}ms`);
           
-          animationLoopTimeoutRef.current = setTimeout(() => {
-            if (mounted && !isTalkingRef.current && isHero) {
-              playRandomAnimation(animationClipsRef.current, false);
-            }
-          }, Math.max(nextDelay, 50)); // Minimum 50ms delay
+            animationLoopTimeoutRef.current = setTimeout(() => {
+              if (mounted && !isTalkingRef.current && isHero) {
+                playRandomAnimation(animationClipsRef.current, false);
+              }
+            }, Math.max(nextDelay, 50)); // Minimum 50ms delay
         } else {
           // For chat avatars (A2/A3): A2 has only one idle dance animation
           if (animationSet === 'A2') {
@@ -277,9 +278,9 @@ export function SimpleAvatar({
         const scene = new THREE.Scene();
         sceneRef.current = scene;
 
-        // Camera - Adjusted for chest-up view
-        // Use slightly wider FOV on small screens for better framing
-        const isSmallScreen = container.clientWidth < 640;
+  // Camera - Adjusted for chest-up view
+  // Use slightly wider FOV on small screens for better framing
+  const isSmallScreen = container.clientWidth < 768; // treat tablets/phones as small
         const camera = new THREE.PerspectiveCamera(
           isHero ? (isSmallScreen ? 38 : 30) : (isSmallScreen ? 42 : 35),
           container.clientWidth / container.clientHeight,
@@ -288,8 +289,15 @@ export function SimpleAvatar({
         );
         
         if (isHero) {
-          camera.position.set(0, 1.6, 2.5); // Position for chest-up view
-          camera.lookAt(0, 1.4, 0); // Look at chest level
+          // On small screens, move camera closer for a more 'zoomed' avatar
+          if (isSmallScreen) {
+            // Move camera significantly closer on small screens so avatar appears large
+            camera.position.set(0, 1.45, 0.9);
+            camera.lookAt(0, 1.3, 0);
+          } else {
+            camera.position.set(0, 1.6, 2.5); // Position for chest-up view on desktop
+            camera.lookAt(0, 1.4, 0); // Look at chest level
+          }
         } else {
           camera.position.set(0, 1.6, 1.8); // Closer for chat
           camera.lookAt(0, 1.4, 0);
@@ -363,7 +371,14 @@ export function SimpleAvatar({
 
             // Position and scale avatar
             avatar.position.set(0, 0, 0);
-            avatar.scale.set(1, 1, 1);
+            // On small screens for hero, scale avatar up so it visually fills more of the viewport
+            if (isSmallScreen && isHero) {
+              // Increase scale so avatar visually fills more of mobile viewport
+              avatar.scale.set(1.9, 1.9, 1.9);
+              avatar.position.set(0, -0.35, 0);
+            } else {
+              avatar.scale.set(1, 1, 1);
+            }
             scene.add(avatar);
             
             avatarLoaded = true;
