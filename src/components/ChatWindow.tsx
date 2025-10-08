@@ -238,7 +238,7 @@ export function ChatWindow() {
   };
 
   return (
-    <section className="min-h-screen py-20 pl-2 pr-6 flex flex-col bg-gradient-to-br from-background via-background/50 to-primary/5">
+    <section className="min-h-screen py-6 px-4 md:py-20 md:pl-2 md:pr-6 flex flex-col bg-gradient-to-br from-background via-background/50 to-primary/5">
       <div className="w-full flex flex-col lg:flex-row gap-6 h-[80vh]">
         {/* Avatar Section - Outmost Left */}
         <div className="lg:w-80 flex-shrink-0">
@@ -273,7 +273,7 @@ export function ChatWindow() {
         {/* Chat Section */}
         <div className="flex-1 flex flex-col min-h-0">
           {/* Header */}
-          <div className="mb-6 p-6 bg-gradient-to-r from-card/50 to-accent/5 rounded-xl backdrop-blur-sm border border-primary/10">
+          <div className="mb-6 p-4 md:p-6 bg-gradient-to-r from-card/50 to-accent/5 rounded-xl backdrop-blur-sm border border-primary/10">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Chat with Marzook</h2>
             <p className="text-muted-foreground mt-2">
               Ask me anything about my work, background, and AI projects
@@ -283,7 +283,7 @@ export function ChatWindow() {
           {/* Messages */}
           <div 
             ref={messagesContainerRef}
-            className="flex-1 overflow-y-auto space-y-4 mb-4 bg-gradient-to-br from-card/80 to-accent/5 rounded-xl p-6 border border-primary/10 backdrop-blur-sm shadow-lg"
+            className="flex-1 overflow-y-auto space-y-4 mb-4 bg-gradient-to-br from-card/80 to-accent/5 rounded-xl p-4 md:p-6 border border-primary/10 backdrop-blur-sm shadow-lg"
             onScroll={handleScroll}
           >
             {messages.map((message) => (
@@ -304,7 +304,7 @@ export function ChatWindow() {
           </div>
 
           {/* Input */}
-          <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex gap-3 p-4 bg-gradient-to-r from-card/50 to-accent/5 rounded-xl backdrop-blur-sm border border-primary/10">
+          <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex gap-3 p-4 md:p-4 bg-gradient-to-r from-card/50 to-accent/5 rounded-xl backdrop-blur-sm border border-primary/10 fixed bottom-4 left-4 right-4 md:static md:rounded-xl md:backdrop-blur-sm md:border md:pl-0">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -325,7 +325,7 @@ export function ChatWindow() {
         </div>
 
         {/* Suggested Questions Panel */}
-        <div className="lg:w-64 flex-shrink-0">
+        <div className="lg:w-64 flex-shrink-0 hidden lg:block">
           <div className="sticky top-24">
             <div className="p-4 bg-gradient-to-br from-card/50 to-accent/5 rounded-xl backdrop-blur-sm border border-primary/10 shadow-lg">
               <h3 className="text-lg font-semibold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Suggested Questions</h3>
