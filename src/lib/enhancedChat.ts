@@ -1,11 +1,12 @@
 // Enhanced chat system using local RAG
-import { generateRAGResponse, addToConversationHistory as addToHistory } from './localRAG.ts';
+import { generateRAGResponse, addToConversationHistory as addToHistory } from './localRAG';  // ← Remove .ts extension
 
 interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
 }
+// ... rest of the file stays the same
 
 let conversationHistory: ChatMessage[] = [];
 
