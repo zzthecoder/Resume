@@ -1,5 +1,5 @@
 // Enhanced chat system using local RAG
-import { generateRAGResponse, addToConversationHistory as addToHistory } from './localRAG';
+import { generateRAGResponse, addToConversationHistory as addToHistory } from './localRAG.ts';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
